@@ -3,36 +3,21 @@ class Solution
     public:
         int myAtoi(string str) 
         {
+            int i = 0;
+            while (str[i] == ' ') 
+                i++;
+            int sign = 1;
+            if (str[i] == '-' || str[i] == '+')
+                sign = 1 - 2*(str[i++] == '-');
+            if (str[i] <= '0' && str[i] >= '9')
+                return 0;
             vector<int> ans;
-            for (auto &c : str)
+            while (str[i] >= '0' && str[i] <= '9')
+                ans.push_back(str[i++]-'0');
+            int result = 0;
+            if (ans.size() > 0)
             {
-                int c_i = c - '0';
-                if (c_i >= 0 && c_i <= 9)
-                {
-                    if (ans.empty())
-                        ans.push_back(1);
-                    ans.push_back(c_i);
-                }
-                else
-                {
-                    if (!ans.empty())
-                        break;
-                    else
-                    {
-                        if (c == '+')
-                            ans.push_back(1); 
-                        else if (c == '-')
-                            ans.push_back(-1);
-                        else if (c != ' ')
-                            break;
-                    }
-                }
-            }
-            if (ans.size() > 1)
-            {
-                int result = 0;
-                int sign = ans[0];
-                for (int i = 1; i < ans.size(); i++)
+                for (int i = 0; i < ans.size(); i++)
                 {
                     if (sign > 0)
                     {
