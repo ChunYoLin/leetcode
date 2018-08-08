@@ -3,61 +3,50 @@ class Solution
     public:
         int myAtoi(string str) 
         {
-            std::reverse(str.begin(), str.end());
-            int ans = 0;
-            int k = 0;
-            bool pre_is_num;
-            bool overflow = false;
+            vector<int> ans;
             for (auto &c : str)
             {
-                int c_i = c-'0';
+                int c_i = c - '0';
                 if (c_i >= 0 && c_i <= 9)
                 {
-                    if (!pre_is_num)
-                    {
-                        ans = 0;
-                        k = 0;
-                    } 
-                    int pre_ans = ans;
-                    ans += c_i*pow(10, k);
-                    k += 1;
-                    if (pre_ans >= 0 && ans < 0)
-                    {
-                        ans = 0x7fffffff;
-                        overflow = true;
-                    }
-                    pre_is_num = true;
+                    if (ans.empty())
+                        ans.push_back(1);
+                    ans.push_back(c_i);
                 }
                 else
                 {
-                    if (c != ' ')
+                    if (!ans.empty())
+                        break;
+                    else
                     {
-                        if (!pre_is_num)
-                        {
-                            ans = 0;
-                            k = 0;
-                        } 
-                        else
-                        {
-                            if (c == '-')
-                            {
-                                if (overflow)
-                                    ans = 0x80000000;
-                                else
-                                    ans *= -1;
-                            }
-                            else if (c == '+')
-                                ans *= 1;
-                            else 
-                            {
-                                ans = 0;
-                                k = 0;
-                            }
-                        }
+                        if (c == '+')
+                            ans.push_back(1); 
+                        else if (c == '-')
+                            ans.push_back(-1);
+                        else if (c != ' ')
+                            break;
                     }
-                    pre_is_num = false;
                 }
             }
-            return ans;
+            if (ans.size() > 1)
+            {
+                int result = 0;
+                int sign = ans[0];
+                for (int i = 1; i < ans.size(); i++)
+                {
+                    if (sign > 0)
+                    {
+                        int pre_result = result;
+                        result += ans[i]*pow(10, ans.size()-i-1);
+                        if (result < pre_result)
+                            result = 0x7fffffff;
+                    }
+                    else
+                        result -= ans[i]*pow(10, ans.size()-i-1);
+                }
+                return result;
+            }
+            else
+                return 0;
         }
 };
