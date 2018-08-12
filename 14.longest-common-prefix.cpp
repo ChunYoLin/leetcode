@@ -10,7 +10,11 @@ class Solution
             {
                 bool same = true;
                 for (int j = 1; j < strs.size(); j++)
+                {
+                    if (strs[j].empty() || strs[j-1].empty())
+                        return "";
                     same &= strs[j][i] == strs[j-1][i];
+                }
                 if (same)
                     ans += strs[0][i];
                 else
