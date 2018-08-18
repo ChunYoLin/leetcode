@@ -11,14 +11,20 @@ class Solution
     public:
         ListNode *swapPairs(ListNode *head)
         {
+            if (head == NULL)
+                return head;
             ListNode **pp = &head;
-            ListNode *a, *b;
-            while ((a = *pp) && (b = a->next))
+            ListNode *cur = head;
+            ListNode *next = cur->next;
+            while (cur != NULL && next != NULL)
             {
-                a->next = b->next;
-                b->next = a;
-                *pp = b;
-                pp = &(a->next);
+                cur->next = next->next;
+                next->next = cur;
+                *pp = next;
+                pp = &cur->next;
+                cur = cur->next;
+                if (cur != NULL)
+                    next = cur->next;
             }
             return head;
         }
