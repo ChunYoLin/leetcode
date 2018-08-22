@@ -15,7 +15,6 @@ class Solution
                     h_ptr++;
                     n_ptr++;
                 }
-                std::cout << n_ptr;
                 if (n_ptr == needle.size())
                     return ans;
                 else
