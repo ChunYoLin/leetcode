@@ -1,10 +1,11 @@
+#include <vector>
+#include <algorithm>
+using namespace std;
 class Solution
 {
     public:
         int findRadius(vector<int>& houses, vector<int>& heaters)
         {
-            if (houses == heaters)
-                return 0;
             if (houses.empty())
                 return 0;
             int radius = 0;
@@ -17,7 +18,7 @@ class Solution
                     int dis = abs(heater-house);
                     if (distance == -1)
                         distance = dis;
-                    else if (distance > dis)
+                    else if (distance >= dis)
                         distance = dis;
                     else
                         break;
