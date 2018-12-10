@@ -6,11 +6,11 @@ class Solution
             if (prices.size() == 0 || prices.size() == 1)
                 return 0;
             int profit = 0;
-            for (int i = 0; i < prices.size()-1; i++)
+            int min_price = INT_MAX;
+            for (int i = 0; i < prices.size(); i++)
             {
-                auto _max = *max_element(prices.begin()+i+1, prices.end());
-                auto _profit = _max - prices[i];
-                profit = max(_profit, profit);
+                min_price = min(min_price, prices[i]);
+                profit = max(profit, prices[i]-min_price);
             }
             return profit;
         }
