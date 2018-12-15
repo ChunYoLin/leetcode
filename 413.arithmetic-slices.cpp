@@ -5,16 +5,16 @@ class Solution
         {
             if (A.size() < 3)
                 return 0;
-            vector<vector<bool>> table(A.size(), vector<bool>(A.size(), true));
-            int ans = 0;
-            for (int start = 0; start < A.size(); start++)
+            vector<int> dp(A.size(), 0);
+            if ((A[2]-A[1]) == (A[1]-A[0]))
+                dp[2] = 1;
+            int result = dp[2];
+            for (int i = 3; i < A.size(); i++)
             {
-                for (int end = start+2; end < A.size(); end++)
-                {
-                    table[start][end] = table[start][end-1] & (A[end] - A[end-1]) == (A[end-1] - A[end-2]);
-                    ans += table[start][end];
-                }
+                if ((A[i]-A[i-1]) == (A[i-1]-A[i-2]))
+                    dp[i] = dp[i-1] + 1;
+                result += dp[i];
             }
-            return ans;
+            return result;
         }
 };
