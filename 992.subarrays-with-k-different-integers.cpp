@@ -4,7 +4,7 @@ class Solution
         class Window
         {
             public:
-                std::map<int, int> values; 
+                std::unordered_map<int, int> values; 
 
                 int different()
                 {
