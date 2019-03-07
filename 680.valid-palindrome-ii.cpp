@@ -20,13 +20,7 @@ class Solution
             }
 
             if (s[head] != s[end])
-            {
-                if (has_del)
-                    return false;
-                bool del_left = valid(s, head+1, end, true);
-                bool del_right = valid(s, head, end-1, true);
-                return del_left | del_right;
-            }
+                return !has_del && (valid(s, head+1, end, true) | valid(s, head, end-1, true));
             return true;
         }
 };
