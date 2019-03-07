@@ -3,6 +3,8 @@ class Solution
     public:
         bool validPalindrome(string s)
         {
+            if (s.size() == 1 || s.size() == 2)
+                return true;
             return valid(s, false);
         }
 
