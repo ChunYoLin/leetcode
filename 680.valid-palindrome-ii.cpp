@@ -11,8 +11,17 @@ class Solution
             if (head == end)
                 return true;
 
+            while (s[head] == s[end])
+            {
+                head++;
+                end--;
+                if (head > end)
+                    return true;
+            }
+
             while (head <= end)
             {
+
                 if (s[head] != s[end])
                 {
                     if (has_del)
