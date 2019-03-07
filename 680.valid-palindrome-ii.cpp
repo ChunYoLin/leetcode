@@ -3,26 +3,26 @@ class Solution
     public:
         bool validPalindrome(string s)
         {
-            if (s.size() == 1 || s.size() == 2)
-                return true;
-            return valid(s, false);
+            return valid(s, 0, s.size()-1, false);
         }
 
-        bool valid(string s, bool has_del)
+        bool valid(const string& s, int head, int end, bool has_del)
         {
-            if (s.size() == 1)
+            if (head == end)
                 return true;
 
-            for (int i = 0; i < s.size()/2; i++)
+            while (head <= end)
             {
-                if (s[i] != s[s.size()-1-i])
+                if (s[head] != s[end])
                 {
                     if (has_del)
                         return false;
-                    bool del_left = valid(s.substr(i+1, s.size()-2*i-1), true);
-                    bool del_right = valid(s.substr(i, s.size()-2*i-1), true);
+                    bool del_left = valid(s, head+1, end, true);
+                    bool del_right = valid(s, head, end-1, true);
                     return del_left | del_right;
                 }
+                head++;
+                end--;
             }
             return true;
         }
