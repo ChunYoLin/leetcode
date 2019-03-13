@@ -12,34 +12,22 @@ class Solution
     public:
         TreeNode* subtreeWithAllDeepest(TreeNode* root)
         {
-            if (root->left == NULL && root->right == NULL)
-                return root;
-            else if (root->right == NULL)
-                return subtreeWithAllDeepest(root->left);
-            else if (root->left == NULL)
-                return subtreeWithAllDeepest(root->right);
-            else
-            {
-                if (length(root->left) > length(root->right))
-                    return subtreeWithAllDeepest(root->left);
-                else if (length(root->right) > length(root->left))
-                    return subtreeWithAllDeepest(root->right);
-                else
-                    return root;
-            }
-                
+            return length_and_node(root).second;
         }
-        
-        int length(TreeNode* root)
-        {
-            if (root->left && root->right)
-                return max(length(root->left), length(root->right))+1;
-            else if (root->left)
-                return length(root->left)+1;
-            else if (root->right)
-                return length(root->right)+1;
-            else
-                return 1;
 
+        pair<int, TreeNode*> length_and_node(TreeNode* root)
+        {
+            if (root == NULL)
+                return {0, NULL};
+
+            auto l_info = length_and_node(root->left);
+            auto r_info = length_and_node(root->right);
+
+            if (l_info.first == r_info.first)
+                return {l_info.first+1, root};
+            else if (l_info.first < r_info.first)
+                return {r_info.first+1, r_info.second};
+            else
+                return {l_info.first+1, l_info.second};
         }
 };
