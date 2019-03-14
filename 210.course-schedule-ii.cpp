@@ -7,8 +7,8 @@ class Solution
             GREY,
             BLACK
         };
-        std::unordered_map<int, std::vector<int>> adj_list;
-        std::unordered_map<int, COLOR> color;
+        std::map<int, std::vector<int>> adj_list;
+        std::map<int, COLOR> color;
         vector<int> ans;
         bool isPossible = true;
 
@@ -22,6 +22,7 @@ class Solution
             for (int i = 0; i < numCourses; i++)
                 if (color[i] == WHITE)
                     dfs(i);
+            reverse(ans.begin(), ans.end());
             return isPossible ? ans : vector<int>{};
         }
 
@@ -39,6 +40,6 @@ class Solution
                     isPossible = false;
             }
             color[node] = BLACK;
-            ans.insert(ans.begin(), node);
+            ans.push_back(node);
         }
 };
