@@ -3,7 +3,7 @@ class Solution
     public:
         vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites)
         {
-            unordered_map<int, std::vector<int>> adj_list;
+            map<int, std::vector<int>> adj_list;
             unordered_map<int, int> in_degree;
             for (auto &p : prerequisites)
             {
