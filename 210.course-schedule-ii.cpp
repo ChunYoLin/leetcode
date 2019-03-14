@@ -7,8 +7,8 @@ class Solution
             GREY,
             BLACK
         };
-        std::map<int, std::vector<int>> adj_list;
-        std::map<int, COLOR> color;
+        std::unordered_map<int, std::vector<int>> adj_list;
+        std::unordered_map<int, COLOR> color;
         vector<int> ans;
         bool isPossible = true;
 
