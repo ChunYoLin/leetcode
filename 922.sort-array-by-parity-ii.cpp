@@ -3,21 +3,17 @@ class Solution
     public:
         vector<int> sortArrayByParityII(vector<int>& A)
         {
-            vector<int> ans(A.size(), 0);
-            int odd = 1, even = 0;
-            for (auto &a : A)
+            int odd = 1;
+            for (int even = 0; even < A.size(); even+=2)
             {
-                if (a%2 == 0)
+                if (A[even]%2 == 1)
                 {
-                    ans[even] = a;
-                    even += 2;
-                }
-                else if (a%2 == 1)
-                {
-                    ans[odd] = a;
+                    while (A[odd]%2 == 1)
+                        odd += 2;
+                    swap(A[even], A[odd]);
                     odd += 2;
                 }
             }
-            return ans;
+            return A;
         }
 };
