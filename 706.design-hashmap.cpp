@@ -13,7 +13,7 @@ class MyHashMap
                 next(_next)
             {}
         };
-        const static int table_size = 64;
+        const static int table_size = 256;
 
         vector<struct entry*> table;
 
