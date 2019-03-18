@@ -31,8 +31,7 @@ class MyHashMap
         int hash(int h)
         {
             // h ^= logical_right_shift(h, 20) ^ logical_right_shift(h, 12); 
-            // return h ^ logical_right_shift(h, 7) ^ logical_right_shift(h, 4);
-            return h;
+            return h ^ logical_right_shift(h, 7) ^ logical_right_shift(h, 4);
         }
 
         /** value will always be non-negative. */
