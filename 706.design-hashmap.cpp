@@ -13,12 +13,13 @@ class MyHashMap
                 next(_next)
             {}
         };
+        const static int table_size = 64;
 
         vector<struct entry*> table;
 
         MyHashMap()
         {
-            table.resize(32, NULL); 
+            table.resize(table_size, NULL); 
         }
 
         int logical_right_shift(int x, int nbits)
