@@ -3,25 +3,14 @@ class Solution
     public:
         vector<vector<int>> kClosest(vector<vector<int>>& points, int K)
         {
-            vector<int> distances;
-            for (auto point : points)
+            auto compare = [](const vector<int>& p1, const vector<int>& p2) -> bool
             {
-                int distance = pow(point[0], 2) + pow(point[1], 2);
-                distances.push_back(distance);
-            }
-            sort(distances.begin(), distances.end());
-            int distance = distances[K-1];
-
+                return (pow(p1[0], 2)+pow(p1[1], 2)) < (pow(p2[0], 2)+pow(p2[1], 2));
+            };
+            sort(points.begin(), points.end(), compare);
             vector<vector<int>> ans;
-            for (auto point = points.begin(); point != points.end(); point++)
-            {
-                if (pow((*point)[0], 2) + pow((*point)[1], 2) <= distance)
-                {
-                    ans.push_back(*point);
-                    if (ans.size() == K)
-                        break;
-                }
-            }
+            for (auto point = points.begin(); K > 0; point++, K--)
+                ans.push_back(*point);
             return ans;
         }
 };
