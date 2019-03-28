@@ -9,7 +9,7 @@ class Solution
             return mergeCount(sums, lower, upper, 0, nums.size()+1);
         }
 
-        int mergeCount(vector<long>& sums, int lower, int upper, int start, int end)
+        int mergeCount(vector<long>& sums, const int& lower, const int& upper, const int& start, const int& end)
         {
             if ((end - start) <= 1)
                 return 0;
