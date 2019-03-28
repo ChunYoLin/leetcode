@@ -9,15 +9,12 @@ class Solution
             return mergeCount(sums, lower, upper, 0, nums.size()+1);
         }
 
-        int mergeCount(vector<long>& sums, const int& lower, const int& upper, const int& start, const int& end)
+        int mergeCount(vector<long>& sums, int lower, int upper, int start, int end)
         {
             if ((end - start) <= 1)
                 return 0;
-            int mid = (start+end) / 2;
+            int mid = (start+end) / 2, j = mid, k = mid;
             int count = mergeCount(sums, lower, upper, start, mid) + mergeCount(sums, lower, upper, mid, end);
-
-            int j = mid;
-            int k = mid;
             for (int i = start; i < mid; i++)
             {
                 while (j < end && sums[j] - sums[i] < lower)
