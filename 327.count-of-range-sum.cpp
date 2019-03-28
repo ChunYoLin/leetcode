@@ -26,18 +26,7 @@ class Solution
                     k++;
                 count += k-j;
             }
-            vector<long> left(sums.begin()+start, sums.begin()+mid);
-            left.push_back(LONG_MAX);
-            vector<long> right(sums.begin()+mid, sums.begin()+end);
-            right.push_back(LONG_MAX);
-            int l = 0, r = 0, s = start;
-            while (s < end)
-            {
-                if (left[l] > right[r])
-                    sums[s++] = right[r++]; 
-                else if (left[l] <= right[r])
-                    sums[s++] = left[l++]; 
-            }
+            inplace_merge(sums.begin()+start, sums.begin()+mid, sums.begin()+end);
             return count;
         }
 };
