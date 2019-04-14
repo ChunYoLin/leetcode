@@ -3,24 +3,31 @@ class Solution
     public:
         string originalDigits(string s)
         {
-            vector<string> words = {"zero", "two", "four", "six", "eight", "one", "three", "five", "seven", "nine"};
-            vector<int> nums = {0, 2, 4, 6, 8, 1, 3, 5, 7, 9};
-            vector<int> distinct_char = {'z', 'w', 'u', 'x', 'g', 'o', 'r', 'f', 's', 'i'};
-            vector<int> counts(26, 0);
-            string result;
-            for (auto ch : s)
+            vector<int> counts(10, 0);
+            for (auto &c : s)
             {
-                counts[ch-'a']++;
+                if (c == 'z') counts[0]++;
+                else if (c == 'o') counts[1]++;
+                else if (c == 'w') counts[2]++;
+                else if (c == 'r') counts[3]++;
+                else if (c == 'u') counts[4]++;
+                else if (c == 'f') counts[5]++;
+                else if (c == 'x') counts[6]++;
+                else if (c == 's') counts[7]++;
+                else if (c == 'g') counts[8]++;
+                else if (c == 'i') counts[9]++;
             }
-            for (int i = 0; i < 10; i++)
-            {
-                int count = counts[distinct_char[i]-'a'];
-                for (int j = 0; j < words[i].size(); j++)
-                    counts[words[i][j]-'a'] -= count;
-                while (count--)
-                    result += to_string(nums[i]);
-            }
-            sort(result.begin(), result.end());
-            return result;
+
+            counts[1] = counts[1] - counts[0] - counts[2] - counts[4];
+            counts[3] = counts[3] - counts[0] - counts[4];
+            counts[5] = counts[5] - counts[4];
+            counts[7] = counts[7] - counts[6];
+            counts[9] = counts[9] - counts[5] - counts[6] - counts[8];
+
+            string ans;
+            for (int i = 0; i <= 9; ++i)
+                while (counts[i]--)
+                    ans += to_string(i);
+            return ans;
         }
 };
