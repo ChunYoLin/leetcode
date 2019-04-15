@@ -11,11 +11,12 @@ class Solution
                 if (s[i] == s[i - 1]) cur++;
                 else 
                 {
-                    res += min(pre, cur); 
                     pre = cur;
                     cur = 1;
                 }
+                if (pre >= cur)
+                    res++;
             }
-            return res + min(pre, cur);
+            return res;
         }
 };
