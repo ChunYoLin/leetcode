@@ -5,6 +5,7 @@ class Solution
         {
             int cur = 0;
             long sum = 0;
+            int n = A.size();
             for (int i = 0; i < A.size(); ++i)
             {
                 cur += i*A[i];
@@ -14,7 +15,7 @@ class Solution
 
             for (int i = 1; i < A.size(); ++i)
             {
-                cur = cur - (A.size()-1)*(A[A.size()-i]) + sum-A[A.size()-i];
+                cur = cur - (n-1)*(A[n-i]) + sum-A[n-i];
                 if (cur > max)
                     max = cur;
             }
