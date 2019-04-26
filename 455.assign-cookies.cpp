@@ -6,13 +6,19 @@ class Solution
             sort(g.begin(), g.end());
             sort(s.begin(), s.end());
             
-            int g_ptr = 0, s_ptr = 0;
-            while (g_ptr < g.size() && s_ptr < s.size())
+            int ans = 0;
+            int s_ptr = 0;
+            for (int g_ptr = 0; g_ptr < g.size(); ++g_ptr)
             {
-                if (g[g_ptr] <= s[s_ptr])
-                    ++g_ptr;
-                ++s_ptr;
+                while (s_ptr < s.size() && s[s_ptr] < g[g_ptr]) ++s_ptr;
+                if (s_ptr < s.size())
+                {
+                    ++ans; 
+                    ++s_ptr;
+                }
+                else
+                    return ans;
             }
-            return g_ptr;
+            return ans;
         }
 };
