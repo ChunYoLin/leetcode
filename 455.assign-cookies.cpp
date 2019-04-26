@@ -10,12 +10,8 @@ class Solution
             while (g_ptr < g.size() && s_ptr < s.size())
             {
                 if (g[g_ptr] <= s[s_ptr])
-                {
                     g_ptr++;
-                    s_ptr++;
-                }
-                else if (s[s_ptr] < g[g_ptr])
-                    s_ptr++;
+                s_ptr++;
             }
             return g_ptr;
         }
