@@ -1,3 +1,4 @@
+static auto _=[](){cin.tie(nullptr);ios::sync_with_stdio(false);return 0;}();
 class Solution
 {
     public:
