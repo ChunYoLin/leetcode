@@ -7,7 +7,8 @@ class Solution
                 return 0;
             int prod = 1;
             int ans = 0, left = 0;
-            for (int right = 0; right < nums.size(); ++right)
+            int len = nums.size();
+            for (int right = 0; right < len; ++right)
             {
                 prod *= nums[right];        
                 while (prod >= k && left <= right)
