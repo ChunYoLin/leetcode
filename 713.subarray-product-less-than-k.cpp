@@ -11,7 +11,7 @@ class Solution
             for (int right = 0; right < len; ++right)
             {
                 prod *= nums[right];        
-                while (prod >= k && left <= right)
+                while (prod >= k)
                     prod /= nums[left++];
                 ans += right - left + 1;
             }
