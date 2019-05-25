@@ -14,7 +14,6 @@ class Solution
         {
             ListNode* slow = head;
             ListNode* fast = head;
-            ListNode* entry = head;
 
             while (slow != NULL && fast != NULL && fast->next != NULL)
             {
@@ -22,12 +21,12 @@ class Solution
                 fast = fast->next->next;
                 if (slow == fast)
                 {
-                    while (slow != entry)
+                    while (slow != head)
                     {
                         slow = slow->next;
-                        entry = entry->next;
+                        head = head->next;
                     }
-                    return entry;
+                    return head;
                 }
             }
             return NULL;
